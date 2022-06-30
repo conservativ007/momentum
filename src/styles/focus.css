@@ -1,0 +1,19 @@
+.user-focus {
+  margin-top: 50px;
+}
+
+.user-ask {
+  margin-top: 10px;
+  white-space: nowrap;
+  text-align: center;
+}
+
+.user-ask__today {
+  font-variant: small-caps;
+  font-size: 25px;
+  font-weight: 500;
+}
+
+.user-ask__focus {
+  font-size: 32px;
+}

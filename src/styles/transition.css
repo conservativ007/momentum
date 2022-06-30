@@ -1,0 +1,19 @@
+/* transition */
+
+.test-enter {
+  opacity: 0;
+}
+
+.test-enter-active {
+  opacity: 1;
+  transition: opacity 1000ms;
+}
+
+.test-exit {
+  opacity: 1;
+}
+
+.test-exit-active {
+  opacity: 0;
+  transition: opacity 1000ms;
+}

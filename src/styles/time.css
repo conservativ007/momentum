@@ -4,7 +4,8 @@
   color: white;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -60%);
+  z-index: 1;
 }
 
 .time-clock {
@@ -19,3 +20,5 @@
   text-align: center;
   white-space: nowrap;
 }
+
+

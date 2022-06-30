@@ -1,9 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
 import "../styles/welcome.css";
 
-const Welcome = ({setUserName, userName, setChangeUserName}) => {
+const Welcome = ({setChangeUserName}) => {
 
   let ref = useRef(null);
+  let [userName, setUserName] = useState(localStorage.getItem("user-name"));
   
 
   useEffect(() => {
@@ -24,7 +25,7 @@ const Welcome = ({setUserName, userName, setChangeUserName}) => {
       value={userName === null ? "" : userName} 
       onChange={e => setUserName(e.target.value)}
       ref={ref} 
-      onKeyDown={saveUserName}
+      onKeyDown={() => saveUserName()}
       className="welcome-input" 
       type="text" />
     </div>
