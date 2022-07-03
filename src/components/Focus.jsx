@@ -10,7 +10,11 @@ const Focus = () => {
   let [isFocus, setIsFocus] = useState(getBoolFromLocalStorage("user-focus"));
   let [isFocusComplete, setIsFocusComplete] = useState(getValueFromLocalStorage("is-focus-complete"));
 
+  let [isDropdownMenuOpen, setIsDropdownMenuOpen] = useState(false);
+
   let userFocusRef = useRef(null);
+  let focusDropdownMenu = useRef(null);
+  let inputFocus = useRef(null);
 
   function saveUserFocus(e) {
     if (e.key === "Enter" && userFocus.length > 0) {
@@ -31,6 +35,22 @@ const Focus = () => {
     return value;
   }
 
+  function clearUserFocus() {
+    setUSerFocus("");
+    setIsFocus(false);
+  }
+
+  function editUserFocus() {
+    setIsFocus(false);
+    setIsFocusComplete(false);
+  }
+
+  useEffect(() => {
+    if(inputFocus.current !== null && isFocus === false) {
+      inputFocus.current.focus();
+    }
+  }, [inputFocus, isFocus]);
+
   useEffect(() => {
     localStorage.setItem("is-focus-complete", JSON.stringify(isFocusComplete));
     if(userFocusRef.current && isFocusComplete === true) {
@@ -42,13 +62,19 @@ const Focus = () => {
     }
   }, [isFocusComplete, userFocusRef]);
 
+  useEffect(() => {
+    if(focusDropdownMenu.current) {
+      focusDropdownMenu.current.style.opacity = isDropdownMenuOpen === true ? 1 : 0;
+      focusDropdownMenu.current.style.display = isDropdownMenuOpen === true ? "block" : "none";
+    }
+  }, [isDropdownMenuOpen, focusDropdownMenu]);
 
   return (
     <div className="user-focus">
       { isFocus === false ?  
         <div className="user-test">
           <div className="user-ask">What is your main focus for today?</div>
-          <input onChange={e => setUSerFocus(e.target.value)} value={userFocus} onKeyDown={(e) => saveUserFocus(e)}  className="welcome-input" type="text" />
+          <input ref={inputFocus} onChange={e => setUSerFocus(e.target.value)} value={userFocus} onKeyDown={(e) => saveUserFocus(e)}  className="welcome-input" type="text" />
         </div>
           :
         <div className="user-ask">
@@ -57,10 +83,16 @@ const Focus = () => {
             <input checked={isFocusComplete} onChange={() => setIsFocusComplete(!isFocusComplete)} id="show-focus" type="checkbox" className="user-ask__input"></input>
             <label htmlFor="show-focus"></label>
             <div ref={userFocusRef} className="user-ask__focus-text">{userFocus}</div>
-            <div className="focus-edit">
-              <span className="focus-edit__first"></span>
-              <span className="focus-edit__second"></span>
-              <span className="focus-edit__third"></span>
+            <div onClick={() => setIsDropdownMenuOpen(!isDropdownMenuOpen)} className="focus-edit">
+              <div className="focus-edit__items">
+                <span className="focus-edit__first"></span>
+                <span className="focus-edit__second"></span>
+                <span className="focus-edit__third"></span>
+              </div>
+              <div ref={focusDropdownMenu} className="focus-edit__dropdown">
+                <div onClick={() => editUserFocus()}>edit</div>
+                <div onClick={() => clearUserFocus()}>clear</div>
+              </div>
             </div>
           </div>
         </div>

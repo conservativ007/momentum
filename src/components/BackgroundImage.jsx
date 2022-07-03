@@ -18,15 +18,15 @@ const BackgroundImage = () => {
   }, [counter, getPartOfTheDay, addZero, arrNumbers]);
 
 
-  // useEffect(() => {
-  //   let timerId = setInterval(() => {
-  //     setCounter(getHoursForBackground())
-  //   }, 1000);
-  //   return () => clearInterval(timerId);
-  // }, [counter])
+  useEffect(() => {
+    let timerId = setInterval(() => {
+      setCounter(getHoursForBackground())
+    }, 1000);
+    return () => clearInterval(timerId);
+  }, [counter])
 
   function getHoursForBackground() {
-    return new Date().getHours();
+    return new Date().getHours() % 20;
   }
 
 
