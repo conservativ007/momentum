@@ -25,7 +25,7 @@ const Welcome = ({setChangeUserName}) => {
       value={userName === null ? "" : userName} 
       onChange={e => setUserName(e.target.value)}
       ref={ref} 
-      onKeyDown={() => saveUserName()}
+      onKeyDown={(e) => saveUserName(e)}
       className="welcome-input" 
       type="text" />
     </div>

@@ -12,7 +12,6 @@ const App = () => {
       <div>
         <BackgroundImage />
         <Welcome setChangeUserName={setChangeUserName} />
-        <button onClick={() => setChangeUserName(!changeUserName)} style={{position: "absolute"}}>change chlen</button>
       </div>
     )
   }
