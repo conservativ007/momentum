@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import BackgroundImage from './BackgroundImage';
 import Time from './Time';
+import Weather from './Weather';
 import Welcome from './Welcome';
 
 const App = () => {
@@ -20,6 +21,7 @@ const App = () => {
     <div>
       <BackgroundImage />
       <Time />
+      <Weather />
     </div>
   );
 }

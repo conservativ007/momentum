@@ -1,0 +1,17 @@
+.weather {
+  position: absolute;
+  z-index: 1;
+  color: white;
+  top: 10px;
+  right: 10px;
+}
+
+.weather-current {
+  display: flex;
+}
+
+.weather-temp {
+  font-size: 30px;
+  margin-left: 10px;
+}
+

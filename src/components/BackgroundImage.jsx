@@ -6,7 +6,7 @@ const BackgroundImage = () => {
   let [arrNumbers] = useState(getArray());
 
   let [counter, setCounter] = useState(getHoursForBackground());
-  let [imageUrl, setImageUrl] = useState(require(`./assets/images/${getPartOfTheDay()}/${addZero(arrNumbers[counter])}.jpg`));
+  let [imageUrl, setImageUrl] = useState(require(`../assets/images/${getPartOfTheDay()}/${addZero(arrNumbers[counter])}.jpg`));
 
   function nextSlide() {
     setCounter(counter + 1);
@@ -14,7 +14,7 @@ const BackgroundImage = () => {
   }
 
   useEffect(() => {
-    setImageUrl(require(`./assets/images/${getPartOfTheDay()}/${addZero(arrNumbers[counter])}.jpg`))
+    setImageUrl(require(`../assets/images/${getPartOfTheDay()}/${addZero(arrNumbers[counter])}.jpg`))
   }, [counter, getPartOfTheDay, addZero, arrNumbers]);
 
 
