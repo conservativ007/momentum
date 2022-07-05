@@ -4,14 +4,123 @@
   color: white;
   top: 10px;
   right: 10px;
+
+  cursor: pointer;
 }
 
 .weather-current {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.weather-current__day {
   display: flex;
 }
 
 .weather-temp {
   font-size: 30px;
-  margin-left: 10px;
+  margin-left: 5px;
 }
+
+.weather-forecast {
+  position: absolute;
+  top: 70px;
+  right: 0;
+  width: 400px;
+  height: 200px;
+  border-radius: 5px;
+
+  display: flex;
+  padding: 20px;
+  flex-direction: column;
+  background-color: white;
+  color: #222;
+  cursor: default;
+
+  transition: .5s;
+  opacity: 0;
+}
+
+.weather-forecast::after {
+  content: ''; 
+  position: absolute;
+  right: 37px; top: -20px;
+  border: 10px solid transparent;
+  border-bottom: 10px solid rgba(255, 255, 255);
+}
+
+.weather-forecast__current-day {
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+}
+
+.current-day__description-weather {
+  margin-top: 5px;
+  color: gray;
+}
+
+.current-day__description-weather::first-letter {
+  text-transform: uppercase;
+}
+
+.current-day__temp {
+  display: flex;
+}
+
+.current-day__temp-temp {
+  margin-left: 10px;
+  font-size: 40px;
+}
+
+.weather-forecast__marker {
+  height: 1px;
+  width: 100%;
+  background-color: #dfe6e9;
+}
+
+
+/* forecast */
+
+.weather-forecast__future {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.weather-forecast__future-days {
+  height: 75px;
+  padding: 5px 15px;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+}
+
+.weather-forecast__future-days:hover {
+  background-color: rgba(0, 0, 0, .1);
+}
+
+.future-days__icon {
+  color: gray;
+}
+
+.future-days__day {
+  text-transform: lowercase;
+  font-variant: small-caps;
+  color: gray;
+}
+
+.future-days__temp {
+  display: flex;
+  font-size: 12px;
+}
+
+.temp-max {
+  margin-right: 5px;
+}
+
+
 
