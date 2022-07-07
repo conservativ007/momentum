@@ -1,10 +1,14 @@
 export async function getWeather(value) {
 
   let coords = new Promise((resolve) => {
-    resolve(
-      fetch("https://ipapi.co/json/")
-      .then(response => response.json())
-    );
+    try {
+      resolve(
+        fetch("https://ipapi.co/json/")
+        .then(response => response.json())
+      );
+    } catch (error) {
+      console.log(error)
+    }
   })
 
   let {latitude, longitude} = await coords;

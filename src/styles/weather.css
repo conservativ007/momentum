@@ -8,6 +8,10 @@
   cursor: pointer;
 }
 
+.owf {
+  color: #2d3436;
+}
+
 .weather-current {
   position: absolute;
   top: 0;
@@ -16,6 +20,10 @@
 
 .weather-current__day {
   display: flex;
+}
+
+.weather-current__day i {
+  color: white;
 }
 
 .weather-temp {
@@ -27,12 +35,11 @@
   position: absolute;
   top: 70px;
   right: 0;
-  width: 400px;
-  height: 200px;
   border-radius: 5px;
 
   display: flex;
   padding: 20px;
+  padding-bottom: 10px;
   flex-direction: column;
   background-color: white;
   color: #222;
@@ -50,8 +57,16 @@
   border-bottom: 10px solid rgba(255, 255, 255);
 }
 
+.current-day__description div {
+  display: flex;
+}
+
+.current-day__description-week {
+  margin-left: 10px;
+  color: gray;
+}
+
 .weather-forecast__current-day {
-  height: 100px;
   display: flex;
   flex-direction: column;
 }
@@ -61,27 +76,23 @@
   color: gray;
 }
 
-.current-day__description-weather::first-letter {
-  text-transform: uppercase;
-}
-
 .current-day__temp {
   display: flex;
+  align-items: center;
 }
 
 .current-day__temp-temp {
   margin-left: 10px;
-  font-size: 40px;
+  font-size: 54px;
 }
 
 .weather-forecast__marker {
+  margin-top: 10px;
   height: 1px;
   width: 100%;
   background-color: #dfe6e9;
 }
 
-
-/* forecast */
 
 .weather-forecast__future {
   margin-top: 10px;
@@ -91,6 +102,7 @@
 
 .weather-forecast__future-days {
   height: 75px;
+  margin-left: 5px;
   padding: 5px 15px;
   border-radius: 4px;
   display: flex;
@@ -99,15 +111,17 @@
   cursor: pointer;
 }
 
+.weather-forecast__future-days:first-child {
+  margin-left: 0;
+}
+
 .weather-forecast__future-days:hover {
   background-color: rgba(0, 0, 0, .1);
 }
 
-.future-days__icon {
-  color: gray;
-}
 
 .future-days__day {
+  font-size: 14px;
   text-transform: lowercase;
   font-variant: small-caps;
   color: gray;
@@ -120,6 +134,32 @@
 
 .temp-max {
   margin-right: 5px;
+}
+
+.temp-min {
+  margin-right: 5px;
+  color: #636e72;
+}
+
+.daily-forecast {
+  margin-left: 5px;
+  display: flex;
+  align-items: flex-end;
+}
+
+.daily-forecast__temp-max {
+  font-size: 54px;
+}
+
+.daily-forecast__temp-min {
+  font-size: 33px;
+  color: #636e72;
+  margin-left: 5px;
+}
+
+
+.active {
+  background-color: rgba(0, 0, 0, .1);
 }
 
 
