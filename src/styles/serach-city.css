@@ -1,0 +1,8 @@
+.search-city__input {
+  width: 100%;
+  border: none;
+  outline: none;
+  padding-bottom: 5px;
+  border-bottom: 2px solid silver;
+}
+

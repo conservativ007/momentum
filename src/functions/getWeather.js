@@ -1,5 +1,6 @@
 export async function getWeather(value) {
 
+  // get user id
   let coords = new Promise((resolve) => {
     try {
       resolve(
@@ -10,6 +11,7 @@ export async function getWeather(value) {
       console.log(error)
     }
   })
+  
 
   let {latitude, longitude} = await coords;
 
