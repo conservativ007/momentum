@@ -15,10 +15,35 @@
   justify-content: center;
 }
 
+/* message */
+
+
 .message {
   font-size: 50px;
   text-align: center;
   white-space: nowrap;
+
+  display: flex;
+  align-items: center;
+  cursor: default;
 }
 
+.message:hover .focus-edit__items {
+  opacity: 1;
+}
 
+.message .focus-edit__dropdown::after {
+  content: ''; 
+  position: absolute;
+  right: 5px; top: -20px;
+  border: 10px solid transparent;
+  border-bottom: 10px solid white;
+}
+
+.message input {
+  outline: none;
+  border: none;
+  background-color: transparent;
+  color: white;
+  margin-left: 10px;
+}
