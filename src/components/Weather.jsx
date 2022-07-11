@@ -81,7 +81,7 @@ const Weather = () => {
         <div className="weather-current__city">{cityName}</div>
       </div>
       <div ref={ref} className="weather-forecast">
-        <ForecastDaily city={cityName} />
+        <ForecastDaily city={cityName} cityData={cityData} />
       </div>
     </div>
   );

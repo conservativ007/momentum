@@ -1,54 +1,28 @@
 import React, {useEffect, useRef, useState} from 'react';
-import { getWeather } from '../functions/getWeather';
 
 import { MdOutlineModeEditOutline } from 'react-icons/md';
 import SearchForCity from './SearchForCity';
+import FutureDays from './FutureDays';
+import axios from 'axios';
 
-const ForecastDaily = ({city}) => {
+const ForecastDaily = ({city, cityData}) => {
 
   let [days, setDays] = useState([]);
   let [dayOfTheWeek, setDayOfTheWeek] = useState("");
   let [activeDay, setActiveDay] = useState([]);
 
   let [isEditCity, setIsEditCity] = useState(false);
-
-  let daysOfTheWeek = {
-    "Thu" : "Thusday",
-    "Fri" : "Friday",
-    "Sat" : "Saturday",
-    "Sun" : "Sunday",
-    "Mon" : "Monday",
-    "Tue" : "Tuesday",
-    "Wed" : "Wednesday",
-  }
-
   let ref = useRef(null);
 
-  // get daily forecast
   useEffect(() => {
-    getWeather("forecast")
-    .then(r => r.json())
-    .then(data => setDays(data.daily))
-  }, []);
-
-  // get current day
+    axios.get(`https://api.openweathermap.org/data/2.5/onecall?lat=${cityData.lat}&lon=${cityData.lon}&appid=7750e825906fd8d6afa1ee1dcb595e18&units=metric`)
+    .then(data => setDays(data.data.daily))
+  }, [cityData]);
+  
   useEffect(() => {
-    getWeather("currentDay")
-    .then(r => r.json())
-    .then(data => setActiveDay(data))
-  }, []);
-
-
-  function toggleActive(e, item, time) {
-    let elems = document.querySelectorAll(".weather-forecast__future-days");
-    [...elems].map(item => item.className = "weather-forecast__future-days");
-    e.currentTarget.className = "weather-forecast__future-days active";
-    setActiveDay(item);
-
-    let chunkDayOfTheWeek = String(new Date(time * 1000)).slice(0, 3);
-    setDayOfTheWeek(daysOfTheWeek[chunkDayOfTheWeek]);
-    // console.log(daysOfTheWeek[chunkDayOfTheWeek])
-  }
+    axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${cityData.lat}&lon=${cityData.lon}&appid=7750e825906fd8d6afa1ee1dcb595e18&units=metric`)
+    .then(data => setActiveDay(data.data))
+  }, [cityData]);
 
   return (
     <>
@@ -83,20 +57,8 @@ const ForecastDaily = ({city}) => {
 
       <div className="weather-forecast__future" ref={ref}>
       {
-        days.length === 0 ? "" :
-        days.map((item, index) => {
-          if(index >= 5) return;
-          return (
-            <div className={`weather-forecast__future-days ${index === 0 ? "active" : ""}`} key={item.dt} onClick={(e) => toggleActive(e, item, item.dt)}>
-              <div className="future-days__day">{String(new Date(item.dt * 1000)).slice(0, 3)}</div>
-              <div className="future-days__icon" style={{backgroundImage: `url(http://openweathermap.org/img/wn/${item.weather[0].icon}@2x.png)`}}></div>
-              <div className="future-days__temp">
-                <div className="temp-max">{Math.round(item.temp.max)}°</div>
-                <div className="temp-min">{Math.round(item.temp.min)}°</div>
-              </div>
-            </div>
-          )}
-        )
+        days.length === 0 ? "" : 
+        <FutureDays days={days} setDayOfTheWeek={setDayOfTheWeek} setActiveDay={setActiveDay} />
       }
       </div>
     </>
