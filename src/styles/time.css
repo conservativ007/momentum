@@ -26,6 +26,10 @@
   display: flex;
   align-items: center;
   cursor: default;
+
+  position: absolute;
+  left: 50%;
+  transform: translate(-47%);
 }
 
 .message:hover .focus-edit__items {
@@ -47,3 +51,6 @@
   color: white;
   margin-left: 10px;
 }
+
+
+

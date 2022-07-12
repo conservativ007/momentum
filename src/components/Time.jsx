@@ -33,8 +33,8 @@ const Time = () => {
       <div className="time-clock">
         {hours}:{minutes}
       </div>
-        <SayHi hours={hours} /> 
-        <Focus />
+      <SayHi hours={hours} /> 
+      <Focus />
     </div>
   );
 }

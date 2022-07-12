@@ -23,7 +23,6 @@ const Weather = () => {
 
   useEffect(() => {
     if(cityNameFromReducer.length === 0) return;
-    // console.log(cityNameFromReducer)
     axios.get(`https://api.openweathermap.org/geo/1.0/direct?q=${cityNameFromReducer}&limit=1&appid=47f560079c502e4234c3013295d529d3`)
     .then(data => {
       if(data.data.length === 0) {
@@ -70,7 +69,6 @@ const Weather = () => {
     }
   }, [isShowFutureWeather]);
 
-
   return (
     <div className="weather">
       <div onClick={() => setIsShowFutureWeather(!isShowFutureWeather)} className="weather-current">
@@ -81,7 +79,9 @@ const Weather = () => {
         <div className="weather-current__city">{cityName}</div>
       </div>
       <div ref={ref} className="weather-forecast">
-        <ForecastDaily city={cityName} cityData={cityData} />
+        {
+          cityData === null ? "" : <ForecastDaily city={cityName} cityData={cityData} />
+        }
       </div>
     </div>
   );

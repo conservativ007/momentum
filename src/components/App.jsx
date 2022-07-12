@@ -3,6 +3,7 @@ import BackgroundImage from './BackgroundImage';
 import Time from './Time';
 import Weather from './Weather';
 import Welcome from './Welcome';
+import Mantra from './Mantra';
 
 const App = () => {
 
@@ -18,11 +19,12 @@ const App = () => {
   }
 
   return (
-    <div>
+    <>
       <BackgroundImage />
       <Time />
       <Weather />
-    </div>
+      <Mantra />
+    </>
   );
 }
 
