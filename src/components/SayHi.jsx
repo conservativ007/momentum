@@ -1,9 +1,11 @@
 import React, {useState, useEffect, useRef} from 'react';
 
-const SayHi = ({hours}) => {
+const SayHi = () => {
 
-  let [name, setName] = useState(localStorage.getItem("user-name"));
+  const [name, setName] = useState(localStorage.getItem("user-name"));
   const [phrase, setPhrase] = useState("");
+
+  let [hours, setHours] = useState(null);
 
   const [widthElemOfTheUserName, setWidthElemOfTheUserName] = useState(0);
   
@@ -14,8 +16,9 @@ const SayHi = ({hours}) => {
   let userNameRef = useRef(null);
 
   useEffect(() => {
-    let hours = new Date().getHours();
-
+    // let hours = new Date().getHours();
+    if(hours === null) return;
+    console.log(hours)
     if(hours >= 0 && hours <= 5)
     return setPhrase("Good night");
     
@@ -30,6 +33,12 @@ const SayHi = ({hours}) => {
   }, [hours]);
 
   useEffect(() => {
+    setInterval(() => {
+      setHours(new Date().getHours());
+    }, 1000);
+  }, []);
+
+  useEffect(() => {
     if(showMessageSettings === true) {
       dropdownMenu.current.style.opacity = 1;
       dropdownMenu.current.style.display = "block";
@@ -40,6 +49,7 @@ const SayHi = ({hours}) => {
   }, [showMessageSettings])
 
   useEffect(() => {
+    if(userNameRef.current === null) return;
     setWidthElemOfTheUserName(userNameRef.current.offsetWidth)
   }, [userNameRef]);
 
@@ -52,11 +62,17 @@ const SayHi = ({hours}) => {
     setWidthElemOfTheUserName((name.length + 1) * 24)
   }
 
+  function showName() {
+    if(phrase.length !== 0) {
+      return <div className="message-text">{phrase}, <span ref={userNameRef} className="message-text__name"> {name}</span>.</div>
+    }
+    return "";
+  }
+
   return (
     <div className="message">
       {
-        isEditName === false ? 
-        <div className="message-text">{phrase}, <span ref={userNameRef} className="message-text__name"> {name}</span>.</div> :
+        isEditName === false ? showName() :
         <div className="message-text">{phrase}, 
         <input 
           style={{width: `${widthElemOfTheUserName + 20}px`}} 

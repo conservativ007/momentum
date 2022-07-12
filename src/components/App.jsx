@@ -23,7 +23,7 @@ const App = () => {
       <BackgroundImage />
       <Time />
       <Weather />
-      <Mantra />
+      {/* <Mantra /> */}
     </>
   );
 }

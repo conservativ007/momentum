@@ -12,6 +12,10 @@ const Focus = () => {
 
   let [isDropdownMenuOpen, setIsDropdownMenuOpen] = useState(false);
 
+  const [userCongratulates] = useState(["Good job!", "Great work!", "Way to go!"]);
+  const [userCongratulatesPhrase, setUserCongratulatesPhrase] = useState("");
+  const showCongratulateRef = useRef(null);
+
   let userFocusRef = useRef(null);
   let focusDropdownMenu = useRef(null);
   let inputFocus = useRef(null);
@@ -69,6 +73,22 @@ const Focus = () => {
     }
   }, [isDropdownMenuOpen, focusDropdownMenu]);
 
+  useEffect(() => {
+    if(isFocusComplete === true) {
+      setUserCongratulatesPhrase(userCongratulates[getRandomArbitrary(0, 2)])
+      showCongratulateRef.current.style.opacity = 1;
+    } 
+    if(isFocusComplete === false) {
+      showCongratulateRef.current.style.opacity = 0;
+    } 
+  }, [isFocusComplete]);
+
+  function getRandomArbitrary(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+
   return (
     <div className="user-focus">
       { isFocus === false ?  
@@ -95,6 +115,7 @@ const Focus = () => {
               </div>
             </div>
           </div>
+          <div ref={showCongratulateRef} className="user-ask__congratulate">{userCongratulatesPhrase}</div>
         </div>
       } 
     </div>

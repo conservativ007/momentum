@@ -19,7 +19,6 @@ const Mantra = () => {
     <div className="mantra">
       <div className="mantra-text">{mantra}</div>
       <div className="mantra-author">{mantraAuthor}</div>
-      
     </div>
   );
 }
