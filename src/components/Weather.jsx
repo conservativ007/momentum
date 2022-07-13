@@ -1,15 +1,16 @@
 import React, { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
 
 import "../styles/owfont-regular.css";
 import "../styles/weather.css";
 import ForecastDaily from './ForecastDaily';
-
-import { useSelector } from 'react-redux'
+import { actionHideFutureAction, actionShowFutureAction } from '../store/showWeatherFutureReducer';
 
 const Weather = () => {
 
-  let [isShowFutureWeather, setIsShowFutureWeather] = useState(false);
+  let dispatch = useDispatch();
+  let isShowFutureWeather = useSelector(store => store.showWeatherFutureReducer);
 
   let ref = useRef(null);
 
@@ -71,7 +72,7 @@ const Weather = () => {
 
   return (
     <div className="weather">
-      <div onClick={() => setIsShowFutureWeather(!isShowFutureWeather)} className="weather-current">
+      <div onClick={() => dispatch(isShowFutureWeather === true ? actionHideFutureAction() : actionShowFutureAction())} className="weather-current">
         <div className="weather-current__day">
           <i className={`owf owf-${icon}-d owf-2x`}></i>
           <div className="weather-temp">{temp}°</div>

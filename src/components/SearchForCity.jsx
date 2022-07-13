@@ -9,7 +9,7 @@ const SearchForCity = ({cityName, setIsEditCity}) => {
   let [inputVal, setInputVal] = useState(cityName);
   const dispatch = useDispatch();
 
-  function testFunc(e) {
+  function setCityToLocalStorage(e) {
     if(e.key === "Enter" && inputVal.length > 0) {
       setIsEditCity(prev => !prev)
       localStorage.setItem("city", inputVal);
@@ -19,7 +19,7 @@ const SearchForCity = ({cityName, setIsEditCity}) => {
 
   return (
     <>
-      <input className="search-city__input" type="text" onChange={(e) => setInputVal(e.target.value)} value={inputVal} onKeyDown={(e) => testFunc(e)} autoFocus />
+      <input className="search-city__input" type="text" onChange={(e) => setInputVal(e.target.value)} value={inputVal} onKeyDown={(e) => setCityToLocalStorage(e)} autoFocus />
     </>
   );
 }

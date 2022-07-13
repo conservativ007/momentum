@@ -16,9 +16,7 @@ const SayHi = () => {
   let userNameRef = useRef(null);
 
   useEffect(() => {
-    // let hours = new Date().getHours();
     if(hours === null) return;
-    console.log(hours)
     if(hours >= 0 && hours <= 5)
     return setPhrase("Good night");
     
@@ -52,6 +50,13 @@ const SayHi = () => {
     if(userNameRef.current === null) return;
     setWidthElemOfTheUserName(userNameRef.current.offsetWidth)
   }, [userNameRef]);
+
+
+  // set length user name in start script
+  useEffect(() => {
+    let lengthUserName = localStorage.getItem("user-name").length;
+    setWidthElemOfTheUserName((lengthUserName + 1) * 24);
+  }, [])
 
 
   function testFunc(e) {

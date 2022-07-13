@@ -18,11 +18,11 @@ const Focus = () => {
 
   let userFocusRef = useRef(null);
   let focusDropdownMenu = useRef(null);
-  let inputFocus = useRef(null);
 
   function saveUserFocus(e) {
     if (e.key === "Enter" && userFocus.length > 0) {
       localStorage.setItem("user-focus", userFocus);
+      localStorage.setItem("is-focus-congratulate", JSON.stringify(false));
       setIsFocus(true);
     }
   }
@@ -49,11 +49,6 @@ const Focus = () => {
     setIsFocusComplete(false);
   }
 
-  useEffect(() => {
-    if(inputFocus.current !== null && isFocus === false) {
-      inputFocus.current.focus();
-    }
-  }, [inputFocus, isFocus]);
 
   useEffect(() => {
     localStorage.setItem("is-focus-complete", JSON.stringify(isFocusComplete));
@@ -75,13 +70,38 @@ const Focus = () => {
 
   useEffect(() => {
     if(isFocusComplete === true) {
-      setUserCongratulatesPhrase(userCongratulates[getRandomArbitrary(0, 2)])
+
+      let isShowCongratulate = JSON.parse(localStorage.getItem("is-focus-congratulate"));
+      if(isShowCongratulate === true) return;
+
+      setUserCongratulatesPhrase(userCongratulates[getRandomArbitrary(0, 2)]);
       showCongratulateRef.current.style.opacity = 1;
-    } 
-    if(isFocusComplete === false) {
-      showCongratulateRef.current.style.opacity = 0;
+
+      let timerId = setTimeout(() => {
+        showCongratulateRef.current.style.opacity = 0;
+        localStorage.setItem("is-focus-congratulate", JSON.stringify(true));
+      }, 3000);
+
+      return () => clearTimeout(timerId);
     } 
   }, [isFocusComplete]);
+
+  // save day to local storage
+  useState(() => {
+    localStorage.setItem("date-now", JSON.stringify(new Date().getDate()));
+  }, []);
+
+  // clear focus to hte next day
+  useState(() => {
+    let someDate = JSON.parse(localStorage.getItem("date-now"));
+    let timerId = setInterval(() => {
+      if(new Date().getDate() !== someDate) {
+        setUSerFocus("");
+        localStorage.setItem("user-focus", "");
+      }
+    }, 1000);
+    return () => clearInterval(timerId);
+  }, []);
 
   function getRandomArbitrary(min, max) {
     min = Math.ceil(min);
@@ -94,7 +114,7 @@ const Focus = () => {
       { isFocus === false ?  
         <div className="user-test">
           <div className="user-ask">What is your main focus for today?</div>
-          <input ref={inputFocus} onChange={e => setUSerFocus(e.target.value)} value={userFocus} onKeyDown={(e) => saveUserFocus(e)}  className="welcome-input" type="text" />
+          <input autoFocus onChange={e => setUSerFocus(e.target.value)} value={userFocus} onKeyDown={(e) => saveUserFocus(e)}  className="welcome-input" type="text" />
         </div>
           :
         <div className="user-ask">

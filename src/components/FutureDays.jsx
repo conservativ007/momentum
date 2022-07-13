@@ -1,6 +1,10 @@
 import React from 'react';
+import { useSelector } from 'react-redux'
+
 
 const FutureDays = ({days, setDayOfTheWeek, setActiveDay}) => {
+
+  const isShowWeatherFutureDays = useSelector(s => s.showWeatherFutureReducer);
 
   let daysOfTheWeek = {
     "Thu" : "Thusday",
@@ -26,7 +30,7 @@ const FutureDays = ({days, setDayOfTheWeek, setActiveDay}) => {
     days.map((item, index) => {
       if(index >= 5) return;
       return (
-        <div className={`weather-forecast__future-days ${index === 0 ? "active" : ""}`} key={item.dt} onClick={(e) => toggleActive(e, item, item.dt)}>
+        <div style={{cursor: isShowWeatherFutureDays === true ? "pointer" : "default"}} className={`weather-forecast__future-days ${index === 0 ? "active" : ""}`} key={item.dt} onClick={(e) => toggleActive(e, item, item.dt)}>
           <div className="future-days__day">{String(new Date(item.dt * 1000)).slice(0, 3)}</div>
           <div className="future-days__icon" style={{backgroundImage: `url(http://openweathermap.org/img/wn/${item.weather[0].icon}@2x.png)`}}></div>
           <div className="future-days__temp">

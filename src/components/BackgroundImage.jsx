@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { getArray, getPartOfTheDay, addZero } from '../functions/backgroundFunctions';
+import { getArray, getPartOfTheDay } from '../functions/backgroundFunctions';
 
 const BackgroundImage = () => {
 
   let [arrNumbers] = useState(getArray());
 
   let [counter, setCounter] = useState(getHoursForBackground());
-  let [imageUrl, setImageUrl] = useState(require(`../assets/images/${getPartOfTheDay()}/${addZero(arrNumbers[counter])}.jpg`));
+  let [imageUrl, setImageUrl] = useState(require(`../assets/images/${getPartOfTheDay()}/${arrNumbers[counter]}.jpg`));
 
   function nextSlide() {
     setCounter(counter + 1);
@@ -14,8 +14,8 @@ const BackgroundImage = () => {
   }
 
   useEffect(() => {
-    setImageUrl(require(`../assets/images/${getPartOfTheDay()}/${addZero(arrNumbers[counter])}.jpg`))
-  }, [counter, getPartOfTheDay, addZero, arrNumbers]);
+    setImageUrl(require(`../assets/images/${getPartOfTheDay()}/${arrNumbers[counter]}.jpg`))
+  }, [counter, getPartOfTheDay, arrNumbers]);
 
 
   useEffect(() => {
@@ -38,7 +38,7 @@ const BackgroundImage = () => {
           backgroundImage: `url(${imageUrl})`
         }}
       ></div>
-      <button onClick={() => nextSlide()} style={{position: "absolute", zIndex: 1, left: "50%"}}>change image</button>
+      {/* <button onClick={() => nextSlide()} style={{position: "absolute", zIndex: 1, left: "50%"}}>change image</button> */}
     </div>
     
   );
