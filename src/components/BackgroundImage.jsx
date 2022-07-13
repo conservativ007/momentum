@@ -8,11 +8,6 @@ const BackgroundImage = () => {
   let [counter, setCounter] = useState(getHoursForBackground());
   let [imageUrl, setImageUrl] = useState(require(`../assets/images/${getPartOfTheDay()}/${arrNumbers[counter]}.jpg`));
 
-  function nextSlide() {
-    setCounter(counter + 1);
-    if(counter === 19) setCounter(1);
-  }
-
   useEffect(() => {
     setImageUrl(require(`../assets/images/${getPartOfTheDay()}/${arrNumbers[counter]}.jpg`))
   }, [counter, getPartOfTheDay, arrNumbers]);
@@ -29,7 +24,6 @@ const BackgroundImage = () => {
     return new Date().getHours() % 20;
   }
 
-
   return (
     <div className="background">
       <div 
@@ -38,9 +32,7 @@ const BackgroundImage = () => {
           backgroundImage: `url(${imageUrl})`
         }}
       ></div>
-      {/* <button onClick={() => nextSlide()} style={{position: "absolute", zIndex: 1, left: "50%"}}>change image</button> */}
     </div>
-    
   );
 }
 

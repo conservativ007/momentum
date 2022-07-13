@@ -42,6 +42,7 @@ const Focus = () => {
   function clearUserFocus() {
     setUSerFocus("");
     setIsFocus(false);
+    setIsFocusComplete(false);
   }
 
   function editUserFocus() {

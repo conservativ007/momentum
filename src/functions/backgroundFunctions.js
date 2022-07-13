@@ -1,15 +1,15 @@
 export function getArray() {
   let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
   let arrTwo = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20"];
-    
-    function shuffle(array) {
-      for (let i = array.length - 1; i > 0; i--) {
-        let j = Math.floor(Math.random() * (i + 1)); 
-        [array[i], array[j]] = [array[j], array[i]];
-      }
-      return array;
-    }
-    return shuffle(arrTwo);
+  return arrTwo;
+    // function shuffle(array) {
+    //   for (let i = array.length - 1; i > 0; i--) {
+    //     let j = Math.floor(Math.random() * (i + 1)); 
+    //     [array[i], array[j]] = [array[j], array[i]];
+    //   }
+    //   return array;
+    // }
+    // return shuffle(arrTwo);
 }
 
 export function getPartOfTheDay() {
