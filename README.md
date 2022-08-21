@@ -31,7 +31,7 @@ Builds the app for production to the `build` folder.
 Delete `dist` folder.
 
 #### Technology stack:
-#####`html, css, js, webpack`
+##### `html, css, js, react, webpack`
 
 
 
