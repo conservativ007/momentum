@@ -6,6 +6,8 @@
   left: 50%;
   transform: translate(-50%, -60%);
   z-index: 1;
+
+
 }
 
 .time-clock {
@@ -13,6 +15,12 @@
   font-weight: 400;
   display: flex;
   justify-content: center;
+}
+
+@media(max-width: 600px) {
+  .time-clock {
+    font-size: 130px;
+  }
 }
 
 /* message */
@@ -32,14 +40,21 @@
   transform: translate(-47%);
 }
 
+@media(max-width: 600px) {
+  .message {
+    font-size: 28px;
+  }
+}
+
 .message:hover .focus-edit__items {
   opacity: 1;
 }
 
 .message .focus-edit__dropdown::after {
-  content: ''; 
+  content: '';
   position: absolute;
-  right: 5px; top: -20px;
+  right: 5px;
+  top: -20px;
   border: 10px solid transparent;
   border-bottom: 10px solid white;
 }
@@ -51,6 +66,3 @@
   color: white;
   margin-left: 10px;
 }
-
-
-

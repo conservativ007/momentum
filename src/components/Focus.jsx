@@ -6,7 +6,7 @@ import "../styles/transition.css";
 const Focus = () => {
 
   let [userFocus, setUSerFocus] = useState(localStorage.getItem("user-focus") === null ? "" : localStorage.getItem("user-focus"));
-  
+
   let [isFocus, setIsFocus] = useState(getBoolFromLocalStorage("user-focus"));
   let [isFocusComplete, setIsFocusComplete] = useState(getValueFromLocalStorage("is-focus-complete"));
 
@@ -29,13 +29,13 @@ const Focus = () => {
 
   function getBoolFromLocalStorage(key) {
     let value = localStorage.getItem(key);
-    if(value === null) return false;
+    if (value === null) return false;
     return true;
   }
-  
+
   function getValueFromLocalStorage(key) {
     let value = JSON.parse(localStorage.getItem(key));
-    if(value === null) return false;
+    if (value === null) return false;
     return value;
   }
 
@@ -53,27 +53,27 @@ const Focus = () => {
 
   useEffect(() => {
     localStorage.setItem("is-focus-complete", JSON.stringify(isFocusComplete));
-    if(userFocusRef.current && isFocusComplete === true) {
+    if (userFocusRef.current && isFocusComplete === true) {
       userFocusRef.current.style.textDecoration = "line-through";
-    } 
+    }
 
-    if(userFocusRef.current && isFocusComplete === false) {
+    if (userFocusRef.current && isFocusComplete === false) {
       userFocusRef.current.style.textDecoration = "none";
     }
   }, [isFocusComplete, userFocusRef]);
 
   useEffect(() => {
-    if(focusDropdownMenu.current) {
+    if (focusDropdownMenu.current) {
       focusDropdownMenu.current.style.opacity = isDropdownMenuOpen === true ? 1 : 0;
       focusDropdownMenu.current.style.display = isDropdownMenuOpen === true ? "block" : "none";
     }
   }, [isDropdownMenuOpen, focusDropdownMenu]);
 
   useEffect(() => {
-    if(isFocusComplete === true) {
+    if (isFocusComplete === true) {
 
       let isShowCongratulate = JSON.parse(localStorage.getItem("is-focus-congratulate"));
-      if(isShowCongratulate === true) return;
+      if (isShowCongratulate === true) return;
 
       setUserCongratulatesPhrase(userCongratulates[getRandomArbitrary(0, 2)]);
       showCongratulateRef.current.style.opacity = 1;
@@ -84,7 +84,7 @@ const Focus = () => {
       }, 3000);
 
       return () => clearTimeout(timerId);
-    } 
+    }
   }, [isFocusComplete]);
 
   // save day to local storage
@@ -96,7 +96,7 @@ const Focus = () => {
   useState(() => {
     let someDate = JSON.parse(localStorage.getItem("date-now"));
     let timerId = setInterval(() => {
-      if(new Date().getDate() !== someDate) {
+      if (new Date().getDate() !== someDate) {
         setUSerFocus("");
         localStorage.setItem("user-focus", "");
       }
@@ -112,12 +112,12 @@ const Focus = () => {
 
   return (
     <div className="user-focus">
-      { isFocus === false ?  
-        <div className="user-test">
+      {isFocus === false ?
+        <div className="user-focus__ask">
           <div className="user-ask">What is your main focus for today?</div>
-          <input autoFocus onChange={e => setUSerFocus(e.target.value)} value={userFocus} onKeyDown={(e) => saveUserFocus(e)}  className="welcome-input" type="text" />
+          <input autoFocus onChange={e => setUSerFocus(e.target.value)} value={userFocus} onKeyDown={(e) => saveUserFocus(e)} className="welcome-input" type="text" />
         </div>
-          :
+        :
         <div className="user-ask">
           <div className="user-ask__today">today</div>
           <div className="user-ask__focus">
@@ -138,7 +138,7 @@ const Focus = () => {
           </div>
           <div ref={showCongratulateRef} className="user-ask__congratulate">{userCongratulatesPhrase}</div>
         </div>
-      } 
+      }
     </div>
   );
 }

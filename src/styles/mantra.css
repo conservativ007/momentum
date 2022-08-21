@@ -1,7 +1,6 @@
 .mantra {
   width: 50vw;
   height: 50px;
-  font-family: 'Montserrat', sans-serif;
   font-weight: 500;
   font-size: 15px;
   font-style: italic;
@@ -14,6 +13,12 @@
   transform: translate(-50%);
 
   width: 400px;
+}
+
+@media(max-width: 600px) {
+  .mantra {
+    max-width: 360px;
+  }
 }
 
 .mantra:hover .mantra-author {
@@ -42,7 +47,3 @@
   transform: translate(-50%);
   transition: .3s;
 }
-
-
-
-

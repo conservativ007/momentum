@@ -50,9 +50,10 @@
 }
 
 .weather-forecast::after {
-  content: ''; 
+  content: '';
   position: absolute;
-  right: 37px; top: -20px;
+  right: 37px;
+  top: -20px;
   border: 10px solid transparent;
   border-bottom: 10px solid rgba(255, 255, 255);
 }
@@ -125,7 +126,16 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* cursor: pointer; */
+}
+
+@media(max-width: 600px) {
+  .weather-forecast__future-days {
+    padding: 5px 10px;
+  }
+
+  .weather-forecast__future-days:last-child {
+    display: none;
+  }
 }
 
 .weather-forecast__future-days:first-child {
@@ -161,17 +171,14 @@
 }
 
 .future-days__temp {
+  width: 100%;
   margin-top: 10px;
   display: flex;
+  justify-content: space-around;
   font-size: 12px;
 }
 
-.temp-max {
-  margin-right: 5px;
-}
-
 .temp-min {
-  margin-right: 5px;
   color: #636e72;
 }
 
@@ -195,6 +202,3 @@
 .active {
   background-color: rgba(0, 0, 0, .1);
 }
-
-
-

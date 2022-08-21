@@ -2,11 +2,17 @@
   position: absolute;
   width: 500px;
   height: 60px;
-  top: 100px;
-  left: calc(50% - 250px);
-  top: calc(50% - 30px);
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 
   z-index: 1;
+}
+
+@media(max-width: 600px) {
+  .welcome {
+    max-width: 360px;
+  }
 }
 
 .welcom-question {
@@ -25,4 +31,14 @@
   text-align: center;
   color: white;
   font-size: 50px;
+}
+
+@media(max-width: 600px) {
+  .welcom-question {
+    font-size: 30px;
+  }
+
+  .welcome-input {
+    font-size: 35px;
+  }
 }
