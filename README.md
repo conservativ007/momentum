@@ -1,12 +1,8 @@
-# Webpack 5 config for React
-
-A detailed guide for setting up this config you can find in my article on Habr: https://habr.com/ru/post/597389/
-
 # Getting Started
 
 First of all, you must copy it to your project:
 
-### `git clone https://github.com/aAleksandrOrlov/webpack-5-react-config ./<your_directory>`
+### `git clone git@github.com:conservativ007/momentum.git ./<your_directory>`
 
 Then install the dependencies:
 
@@ -33,3 +29,9 @@ Builds the app for production to the `build` folder.
 ### `npm run clean`
 
 Delete `dist` folder.
+
+#### Technology stack:
+#####`html, css, js, webpack`
+
+
+
